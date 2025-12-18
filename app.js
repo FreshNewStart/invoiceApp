@@ -94,8 +94,6 @@ document.getElementById("invoiceForm").addEventListener("submit", async (e) => {
   }
 
   const invoiceNumber = data[0].invoice_number;
-  document.getElementById("result").textContent =
-    `Invoice created successfully. Invoice No: INV-${invoiceNumber}`;
 
   // Populate PDF template
   const invoiceElement = document.getElementById("invoiceTemplate");

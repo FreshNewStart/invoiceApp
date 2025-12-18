@@ -18,7 +18,7 @@
 <body>
 
 <section class="container">
-        <h2>Yonnie LTD's Invoice Generator</h2>
+        <h2 class="main-heading">Yonnie LTD's Invoice Generator</h2>
 
 <form id="invoiceForm">
   <input type="text" id="client_name" placeholder="Client Name" required /><br><br>
@@ -40,12 +40,10 @@
 </form>
     </section>
 
-<p id="result"></p>
-
 <!-- Hidden PDF Template -->
 <div id="invoiceTemplate" style="display:none; width:210mm; min-height:297mm; padding:20mm; font-family: Arial; box-sizing:border-box;">
   <div style="text-align:center;">
-    <h2>Yonnie Limited</h2>
+    <h2 style="color: #3c0064; margin-right: auto;">Yonnie Limited</h2>
     <hr/>
   </div>
 
@@ -85,13 +83,11 @@
 <style>
     *{
         font-family: Montserrat !important;
-        padding: 0;
-        margin: 0;
         overflow-x: hidden;
     }
     body{
         background: #020024;
-background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 91, 110, 1) 46%, rgba(59, 0, 110, 1) 83%);
+        background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 91, 110, 1) 46%, rgba(59, 0, 110, 1) 83%);
     }
     .container{
         display: flex;
@@ -105,7 +101,7 @@ background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, 
         width: 100%;
         height: fit-content;
     }
-    h2{
+    .main-heading{
         margin-top: 2rem;
         font-size: 1.5rem;
         color: white;
