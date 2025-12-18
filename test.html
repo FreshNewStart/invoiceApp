@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Invoice Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    
+    .item-row { display: flex; gap: 10px; margin-bottom: 5px; }
+    .item-row input { flex: 1; padding: 5px; }
+    button { margin-top: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    #totals { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<section class="container">
+        <h2>Yonnie LTD's Invoice Generator</h2>
+
+<form id="invoiceForm">
+  <input type="text" id="client_name" placeholder="Client Name" required /><br><br>
+  <input type="text" id="attention" placeholder="Attention" required /><br><br>
+  <input type="email" id="client_email" placeholder="Client Email" /><br><br>
+  <input type="text" id="invoice_subject" placeholder="Invoice Subject" required /><br><br>
+
+  <p>Items / Tasks</p>
+  <div id="itemsContainer"></div>
+  <button class="b1" type="button" id="addItemBtn">Add Item +</button>
+
+  <div id="totals">
+    <strong>Subtotal:</strong> K <span id="subtotal">0.00</span><br>
+    <strong>GST 10%:</strong> K <span id="gst">0.00</span><br>
+    <strong>Grand-Total:</strong> K <span id="grandTotal">0.00</span>
+  </div>
+
+  <button class="b2" type="submit">Generate Invoice</button>
+</form>
+    </section>
+
+<p id="result"></p>
+
+<!-- Hidden PDF Template -->
+<div id="invoiceTemplate" style="display:none; width:210mm; min-height:297mm; padding:20mm; font-family: Arial; box-sizing:border-box;">
+  <div style="text-align:center;">
+    <h2>Yonnie Limited</h2>
+    <hr/>
+  </div>
+
+  <p><strong>Invoice No:</strong> <span id="pdfInvoiceNumber"></span></p>
+  <p><strong>Date:</strong> <span id="pdfDate"></span></p>
+  <p><strong>Bill To:</strong> <span id="pdfClientName"></span></p>
+  <p><strong>Attention:</strong> <span id="pdfAttention"></span></p>
+  <p><strong>Email:</strong> <span id="pdfClientEmail"></span></p>
+  <p><strong>Subject:</strong> <span id="pdfSubject"></span></p>
+
+  <table id="pdfItemsTable">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Amount (PGK)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p>Subtotal: K <span id="pdfSubtotal">0.00</span></p>
+  <p>GST 10%: K <span id="pdfGst">0.00</span></p>
+  <p>Total: K <span id="pdfGrandTotal">0.00</span></p>
+
+  <hr/>
+  <p>Thank you for your business!</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="app1.js"></script>
+
+</body>
+</html>
+
+<style>
+    *{
+        font-family: Montserrat !important;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 0;
+        padding-bottom: 2rem;
+        border-radius: 2rem;
+        gap: 1rem;
+        width: 100%;
+        height: fit-content;
+        background-image: url(hero2.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    h2{
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        color: white;
+        text-shadow: 2px 2px 2px #000000;
+        text-align: center;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        width: 80%;
+        max-width: 400px;
+        min-width: 290px;
+    }
+    form input{
+        width: 100%;
+        padding: .5rem;
+        margin: 0 !important;
+    }
+    .b1{
+        padding: .4rem 1rem;
+        width: fit-content;
+        border-radius: .3rem;
+        font-size: .8rem;
+        margin-bottom: 1rem;
+        margin-top: .5rem;
+    }
+    .b2{
+        padding: .5rem 1.1rem;
+        width: fit-content;
+        border-radius: .3rem;
+        font-size: 1rem;
+        color: white;
+        background-color: blueviolet;
+        border: none;
+        box-shadow: 1px 1px 3px black;
+        margin: 1.5rem auto;
+    }
+    #totals span{
+        color: rgb(255, 0, 43);
+    }
+</style>
